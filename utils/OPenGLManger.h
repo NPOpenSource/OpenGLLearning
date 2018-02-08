@@ -8,11 +8,12 @@
 
 #ifndef OPenGLManger_h
 #define OPenGLManger_h
-
+#import "TextureFrame.h"
 #import "TextureManager.h"
 #import "FrameBufferManger.h"
 #import "ShaderManager.h"
 #import "AGLKVertexAttribArrayBuffer.h"
 #import "AGLKElementIndexArrayBuffer.h"
+#import "OpenGLBaseView.h"
 
 #endif /* OPenGLManger_h */

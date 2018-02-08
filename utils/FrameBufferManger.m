@@ -172,5 +172,18 @@
     }
 }
 
+- (void)dealloc
+{
+    if (self.mExtraFBOID) {
+        glDeleteFramebuffers(1, &_mExtraFBOID);
+        self.mExtraFBOID = 0;
+    }
+    if (self.mExtraDepthBuffer) {
+        glDeleteRenderbuffers(1, &_mExtraDepthBuffer);
+        self.mExtraDepthBuffer=0;
+    }
+
+}
+
 @end
 
