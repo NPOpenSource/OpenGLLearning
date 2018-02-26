@@ -150,7 +150,12 @@
     }
     return YES;
 }
-
+-(void)useProgram:(void(^)(void))uniformBlock{
+    glUseProgram(self.program);
+    if (uniformBlock) {
+        uniformBlock();
+    }
+}
 
 
 @end

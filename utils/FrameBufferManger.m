@@ -17,7 +17,7 @@
 {
     self = [super init];
     if (self) {
-        
+        self.bindTextureId = GL_TEXTURE0;
     }
     return self;
 }
@@ -26,6 +26,7 @@
 
 
 -(void)textureInit{
+    glActiveTexture( self.bindTextureId);
     glGenTextures(1, &_textureId);
     //    绑定texture纹理
     glBindTexture(GL_TEXTURE_2D, self.textureId);
@@ -158,8 +159,9 @@
 }
 
 -(void)offScreenRender:(void(^)(void)) performBlock{
-    glBindFramebuffer(GL_FRAMEBUFFER, self.mExtraFBOID
-                      );
+    glBindFramebuffer(GL_FRAMEBUFFER, self.mExtraFBOID);
+    glBindRenderbuffer(GL_RENDERBUFFER, self.mExtraDepthBuffer);
+    glBindTexture(GL_TEXTURE_2D, self.textureId);
     if (performBlock) {
         performBlock();
     }
@@ -167,6 +169,10 @@
                       );
 }
 -(void)layerRender:(void(^)(void)) performBlock{
+    glBindFramebuffer(GL_FRAMEBUFFER, self.mExtraFBOID);
+    glBindRenderbuffer(GL_RENDERBUFFER, self.mExtraDepthBuffer);
+    glViewport(0, 0, self.width,self.height);
+
     if (performBlock) {
         performBlock();
     }

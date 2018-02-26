@@ -1,13 +1,12 @@
-attribute vec4 position;
+attribute vec3 postion;
 attribute vec2 textCoordinate;
 
 varying lowp vec2 varyTextCoord;
-varying lowp vec2 varyOtherPostion;
+
+
 
 void main()
 {
+    gl_Position =vec4(postion,1.0);
     varyTextCoord = textCoordinate;
-    varyOtherPostion = position.xy;
-    
-    gl_Position = position;
 }

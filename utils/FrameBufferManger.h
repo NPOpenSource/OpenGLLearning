@@ -11,6 +11,9 @@
 @interface FrameBufferManger : NSObject
 @property (nonatomic ,assign)GLint width;
 @property (nonatomic ,assign)GLint height;
+
+@property (nonatomic ,assign) GLuint bindTextureId;
+
 @property (nonatomic ,assign)GLuint mExtraFBOID;
 @property (nonatomic , assign) GLint mDefaultFBO;
 @property (nonatomic,assign) GLuint mExtraDepthBuffer;

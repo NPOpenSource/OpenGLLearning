@@ -14,5 +14,5 @@
 ///   glBindAttribLocation(program, 0, "Position"); glGetUniformLocation(self.program, name);
 
 -(BOOL)CompileLinkSuccessShaderName:(NSString *)shader glBindAttribLocationBlock:(void(^)(GLuint program))attribLactionBlock GetUniformLocationBlock:(void(^)(GLuint program))uniformLocationBlock;
-
+-(void)useProgram:(void(^)(void))uniformBlock;
 @end
