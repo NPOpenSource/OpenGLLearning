@@ -15,7 +15,7 @@
 
 
 @property (nonatomic , assign) GLuint texture;
-- (GLuint)setupTexture:(NSString *)fileName ;
+- (void)setupTexture:(NSString *)fileName ;
 
--(void)build;
+-(GLuint)build;
 @end

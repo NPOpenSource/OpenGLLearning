@@ -9,7 +9,7 @@
 #import "TextureFrame.h"
 #import <UIKit/UIKit.h>
 @interface TextureFrame()
-
+@property (nonatomic ,strong )NSString *fileName;
 @end
 
 @implementation TextureFrame
@@ -22,14 +22,16 @@
     }
     return self;
 }
-- (GLuint)setupTexture:(NSString *)fileName {
-    // 1获取图片的CGImageRef
-    CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
+- (void)setupTexture:(NSString *)fileName {
+    self.fileName = fileName;
+}
+-(GLuint)build{
+    glActiveTexture(self.location);
+    CGImageRef spriteImage = [UIImage imageNamed:self.fileName].CGImage;
     if (!spriteImage) {
-        NSLog(@"Failed to load image %@", fileName);
+        NSLog(@"Failed to load image %@", self.fileName);
         exit(1);
     }
-
     // 2 读取图片的大小
     size_t width = CGImageGetWidth(spriteImage);
     size_t height = CGImageGetHeight(spriteImage);
@@ -58,10 +60,6 @@
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
     free(spriteData);
     return self.texture;
-}
--(void)build{
-    glActiveTexture(self.location);
-    glBindTexture(GL_TEXTURE_2D, self.texture);
 }
 
 @end
